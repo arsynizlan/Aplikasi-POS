@@ -17,23 +17,25 @@ class KategoriController extends Controller
     {
         return view('kategori.index');
     }
-    public function data(){
-        $kategori=Kategori::orderBy('id','desc')->get();
+
+    public function data()
+    {
+        $kategori = Kategori::orderBy('id', 'desc')->get();
         return datatables()
             ->of($kategori)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kategori) {
                 return '
                 <div class="btn-group">
-                <button onclick="editForm(`'. route('kategori.update', $kategori->id) .'`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button onclick="deleteData(`'. route('kategori.destroy', $kategori->id) .'`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button onclick="editForm(`' . route('kategori.update', $kategori->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button onclick="deleteData(`' . route('kategori.destroy', $kategori->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
 
             ->rawColumns(['aksi'])
             ->make(true);
-            // ->addColumn('action', 'users.action');
+        // ->addColumn('action', 'users.action');
     }
 
     /**
@@ -58,7 +60,7 @@ class KategoriController extends Controller
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
 
-        return response()->json('data berhasil disimpan',200);
+        return redirect()->back();
     }
 
     /**
@@ -69,9 +71,9 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        $kategori =Kategori::find($id);
+        $kategori = Kategori::find($id);
 
-        return response()->json($kategori,200);
+        return response()->json($kategori, 200);
     }
 
     /**
@@ -98,7 +100,7 @@ class KategoriController extends Controller
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->update();
 
-        return response()->json('data berhasil disimpan',200);
+        return redirect()->back();
     }
 
     /**
@@ -109,9 +111,9 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori =Kategori::find($id);
+        $kategori = Kategori::find($id);
         $kategori->delete();
 
-        return response(null,204);
+        return response(null, 204);
     }
 }

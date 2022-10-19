@@ -25,7 +25,7 @@ Route::middleware([
         return view('home');
     })->name('dashboard');
 });
-Route::group(['middleware'=>'auth'],function(){
-    Route::get('/kategori/data',[KategoriController::class,'data'])->name('kategori.data');
-    Route::resource('/kategori',KategoriController::class);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
+    Route::resource('/kategori', KategoriController::class);
 });
