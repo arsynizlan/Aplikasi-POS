@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
+<meta name="csrf-token" content="{{csrf_token()}}">
     <title>@yield('title') | {{ config('app.name') }}</title>
 
     <meta name="description" content="" />
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('sneat/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- Helpers -->
     <script src="{{ asset('sneat/assets/vendor/js/helpers.js') }}"></script>
 
@@ -99,9 +99,13 @@
 
     <!-- Page JS -->
     <script src="{{ asset('sneat/assets/js/dashboards-analytics.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- validator --}}
+    <script src="{{asset('js/bootstrapValidator.min.js')}}"></script>
+    @stack('scripts')
 </body>
 
 </html>
