@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="col-lg-12 order-0">
-                <button onclick="addForm('{{ route('kategori.store') }}')" class="btn btn-success btn-flax">Tambah</button>
+                <button onclick="addForm('{{ route('kategori.store') }}')" class="btn btn-primary btn-flax">Tambah</button>
             </div>
             <div class="card mt-3">
 

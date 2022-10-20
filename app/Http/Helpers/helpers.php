@@ -34,12 +34,12 @@ function terbilang($angka)
 function tanggal_indonesia($tgl, $tampil_hari = true)
 {
     $nama_hari = array(
-        'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'
+        "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"
     );
 
     $nama_bulan = array(
         1 =>
-        'januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'desember'
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
     );
 
     $tahun = substr($tgl, 0, 4);

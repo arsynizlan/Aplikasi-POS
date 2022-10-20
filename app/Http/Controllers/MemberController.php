@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use PDF;
+
 class MemberController extends Controller
 {
     /**
@@ -15,7 +16,6 @@ class MemberController extends Controller
     public function index()
     {
         return view('member.index');
-
     }
     public function data()
     {
@@ -34,13 +34,13 @@ class MemberController extends Controller
             ->addColumn('aksi', function ($member) {
                 return '
                 <div class="btn-group">
-                <button onclick="editForm(`' . route('member.update', $member->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button onclick="deleteData(`' . route('member.destroy', $member->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('member.update', $member->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('member.destroy', $member->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
 
-            ->rawColumns(['aksi','kode_member','select_all'])
+            ->rawColumns(['aksi', 'kode_member', 'select_all'])
             ->make(true);
         // ->addColumn('action', 'users.action');
     }
@@ -64,14 +64,14 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $member = Member::latest()->first();
-        $kode_member = (int) $member->kode_member +1 ?? 1;
+        $member = Member::latest()->first() ?? new Member();
+        $kode_member = (int) $member->kode_member + 1 ?? 1;
 
         $member = new Member();
         $member->kode_member = tambah_nol_didepan($kode_member, 5);
-        $member->nama=$request->nama;
-        $member->telepon=$request->telepon;
-        $member->alamat=$request->alamat;
+        $member->nama = $request->nama;
+        $member->telepon = $request->telepon;
+        $member->alamat = $request->alamat;
         $member->save();
         return redirect()->back();
     }
@@ -142,7 +142,7 @@ class MemberController extends Controller
 
         $no  = 1;
 
-        $pdf = PDF::loadView('member.cetak', compact('datamember','no'));
+        $pdf = PDF::loadView('member.cetak', compact('datamember', 'no'));
         $pdf->setPaper(array(0, 0, 566.93, 850.39), 'potrait');
         return $pdf->stream('member.pdf');
     }

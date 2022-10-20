@@ -9,11 +9,11 @@
 
         <div class="row">
             <div class="col-lg-12 order-0">
-                <button onclick="addForm('{{ route('produk.store') }}')" class="btn btn-success btn-flax">Tambah</button>
+                <button onclick="addForm('{{ route('produk.store') }}')" class="btn btn-primary btn-flax">Tambah</button>
                 <button onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
                     class="btn btn-danger btn-flax">Hapus</button>
-                <button onclick="cetakBarcode('{{ route('produk.cetak_barcode') }}')"
-                    class="btn btn-info btn-flax">Cetak Barcode</button>
+                <button onclick="cetakBarcode('{{ route('produk.cetak_barcode') }}')" class="btn btn-info btn-flax">Cetak
+                    Barcode</button>
             </div>
             <div class="card mt-3">
 
@@ -126,7 +126,6 @@
         });
 
 
-
         function addForm(url) {
             $('#modal-form').modal('show');
             $('#ModalTitleAdd').text('Tambah Produk');
@@ -193,19 +192,20 @@
                 return;
             }
         }
+
         function cetakBarcode(url) {
             if ($('input:checked').length < 1) {
                 alert('Pilih data yang akan dicetak');
-            }else if ($('input:checked').length < 3) {
-                alert('Pilih minimal 3 data yang akan dicetak');
                 return;
-            }else{
-            $('.form-produk')
-            .attr('target','_blank')
-            .attr('action',url)
-            .submit();
+            } else if ($('input:checked').length < 3) {
+                alert('Pilih minimal 3 data untuk dicetak');
+                return;
+            } else {
+                $('.form-produk')
+                    .attr('target', '_blank')
+                    .attr('action', url)
+                    .submit();
+            }
         }
-        }
-
     </script>
 @endpush

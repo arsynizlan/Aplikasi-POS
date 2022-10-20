@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Member
+    Supplier
 @endsection
 
 @section('content')
@@ -9,38 +9,30 @@
 
         <div class="row">
             <div class="col-lg-12 order-0">
-                <button onclick="addForm('{{ route('member.store') }}')" class="btn btn-primary btn-flax">Tambah</button>
-
-                {{-- BUTTON CETAK MEMBER --}}
-                {{-- <button onclick="cetakMember('{{ route('member.cetak_member') }}')"class="btn btn-info btn-flax">Cetak Member</button> --}}
+                <button onclick="addForm('{{ route('supplier.store') }}')" class="btn btn-primary btn-flax">Tambah</button>
             </div>
             <div class="card mt-3">
-
                 <div class="table-responsive text-nowrap mt-3">
-                    <form action="" method="post" class="form-member">
-                        @csrf
-                        <table class="table" table-bordered>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode</th>
-                                    <th>Nama</th>
-                                    <th>Telepon</th>
-                                    <th>Alamat</th>
-                                    <th>OPSI</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                            </tbody>
-                        </table>
-                    </form>
+                    <table class="table" table-bordered>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Telepon</th>
+                                <th>Alamat</th>
+                                <th>OPSI</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
         </div>
     </div>
     </div>
-    @includeIf('member.form')
+    @includeIf('supplier.form')
 @endsection
 
 @push('scripts')
@@ -56,15 +48,12 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
                 ajax: {
-                    url: '{{ route('member.data') }}',
+                    url: '{{ route('supplier.data') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
                         searchable: false,
                         sortable: false
-                    },
-                    {
-                        data: 'kode_member'
                     },
                     {
                         data: 'nama'
@@ -83,10 +72,6 @@
                 ]
             });
 
-            // $('[name=select_all]').on('click', function() {
-            //     $(':checkbox').prop('checked', this.checked);
-            // });
-
             $('#modal-form').validator().on('submit', function(e) {
                 if (!e.preventDefault()) {
                     $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
@@ -104,7 +89,7 @@
 
         function addForm(url) {
             $('#modal-form').modal('show');
-            $('#ModalTitleAdd').text('Tambah Member');
+            $('#ModalTitleAdd').text('Tambah Supplier');
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('post');
@@ -113,7 +98,7 @@
 
         function editForm(url) {
             $('#modal-form').modal('show');
-            $('#ModalTitleAdd').text('Edit Member');
+            $('#ModalTitleAdd').text('Edit Supplier');
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('put');
@@ -144,18 +129,6 @@
                         alert('Tidak dapat menghapus data');
                         return;
                     })
-            }
-        }
-
-        function cetakMember(url) {
-            if ($('input:checked').length < 1) {
-                alert('Pilih data yang akan dicetak');
-                return;
-            } else {
-                $('.form-member')
-                    .attr('target', '_blank')
-                    .attr('action', url)
-                    .submit();
             }
         }
     </script>
