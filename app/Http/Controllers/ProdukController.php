@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use PDF;
+
 class ProdukController extends Controller
 {
     /**
@@ -49,8 +50,8 @@ class ProdukController extends Controller
             ->addColumn('aksi', function ($produk) {
                 return '
                 <div class="btn-group">
-                <button onclick="editForm(`' . route('produk.update', $produk->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button onclick="deleteData(`' . route('produk.destroy', $produk->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('produk.update', $produk->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('produk.destroy', $produk->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
@@ -149,14 +150,14 @@ class ProdukController extends Controller
     }
     public function cetakBarcode(Request $request)
     {
-        $dataProduk =array();
+        $dataProduk = array();
         foreach ($request->id as $id) {
             $produk = Produk::find($id);
             $dataProduk[] = $produk;
         }
         $no = 1;
-        $pdf =PDF::loadView('produk.barcode',compact('dataProduk','no'));
-        $pdf->setPaper('a4','potrait');
+        $pdf = PDF::loadView('produk.barcode', compact('dataProduk', 'no'));
+        $pdf->setPaper('a4', 'potrait');
         return $pdf->stream('produk.pdf');
     }
 }

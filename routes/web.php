@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PengeluaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
     Route::resource('/member', MemberController::class);
     Route::post('/member/cetak-member', [MemberController::class, 'cetakmember'])->name('member.cetak_member');
+
+    Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
+    Route::resource('/supplier', SupplierController::class);
+
+    Route::get('/pengeluaran/data', [PengeluaranController::class, 'data'])->name('pengeluaran.data');
+    Route::resource('/pengeluaran', PengeluaranController::class);
 });

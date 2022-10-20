@@ -50,7 +50,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('supplier.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bxs-truck'></i>
                     <div data-i18n="Analytics">Supplier</div>
                 </a>
@@ -61,7 +61,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('pengeluaran.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-money'></i>
                     <div data-i18n="Analytics">Pengeluaran</div>
                 </a>
