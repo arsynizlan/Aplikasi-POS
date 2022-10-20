@@ -12,11 +12,13 @@
                 <button onclick="addForm('{{ route('produk.store') }}')" class="btn btn-success btn-flax">Tambah</button>
                 <button onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
                     class="btn btn-danger btn-flax">Hapus</button>
+                <button onclick="cetakBarcode('{{ route('produk.cetak_barcode') }}')"
+                    class="btn btn-info btn-flax">Cetak Barcode</button>
             </div>
             <div class="card mt-3">
 
                 <div class="table-responsive text-nowrap mt-3">
-                    <form action="" class="form-produk">
+                    <form action="" method="post" class="form-produk">
                         @csrf
                         <table class="table" table-bordered>
                             <thead>
@@ -191,5 +193,19 @@
                 return;
             }
         }
+        function cetakBarcode(url) {
+            if ($('input:checked').length < 1) {
+                alert('Pilih data yang akan dicetak');
+            }else if ($('input:checked').length < 3) {
+                alert('Pilih minimal 3 data yang akan dicetak');
+                return;
+            }else{
+            $('.form-produk')
+            .attr('target','_blank')
+            .attr('action',url)
+            .submit();
+        }
+        }
+
     </script>
 @endpush

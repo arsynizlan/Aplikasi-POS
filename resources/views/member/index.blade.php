@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Kategori
+    Member
 @endsection
 
 @section('content')
@@ -9,29 +9,37 @@
 
         <div class="row">
             <div class="col-lg-12 order-0">
-                <button onclick="addForm('{{ route('kategori.store') }}')" class="btn btn-success btn-flax">Tambah</button>
+                <button onclick="addForm('{{ route('member.store') }}')" class="btn btn-success btn-flax">Tambah</button>
+                <button onclick="cetakMember('{{ route('member.cetak_member') }}')"class="btn btn-info btn-flax">Cetak Member</button>
             </div>
             <div class="card mt-3">
 
                 <div class="table-responsive text-nowrap mt-3">
-                    <table class="table" table-bordered>
-                        <thead>
-                            <tr>
-                                <th width="5%">No</th>
-                                <th>Kategori</th>
-                                <th width="15%">OPSI</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                        </tbody>
-                    </table>
+                    <form action="" method="post" class="form-member">
+                        @csrf
+                        <table class="table" table-bordered>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="select_all" id="select_all"></th>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Telepon</th>
+                                    <th>Alamat</th>
+                                    <th>OPSI</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
 
         </div>
     </div>
     </div>
-    @includeIf('kategori.form')
+    @includeIf('member.form')
 @endsection
 
 @push('scripts')
@@ -47,15 +55,27 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
                 ajax: {
-                    url: '{{ route('kategori.data') }}',
+                    url: '{{ route('member.data') }}',
                 },
-                columns: [{
-                        data: 'DT_RowIndex',
+                columns: [
+                    {
+                        data: 'select_all'
+                    },
+                    {    data: 'DT_RowIndex',
                         searchable: false,
                         sortable: false
                     },
                     {
-                        data: 'nama_kategori'
+                        data: 'kode_member'
+                    },
+                    {
+                        data: 'nama'
+                    },
+                    {
+                        data: 'telepon'
+                    },
+                    {
+                        data: 'alamat'
                     },
                     {
                         data: 'aksi',
@@ -64,7 +84,9 @@
                     },
                 ]
             });
-
+            $('[name=select_all]').on('click', function() {
+                $(':checkbox').prop('checked', this.checked);
+            });
 
             $('#modal-form').validator().on('submit', function(e) {
                 if (!e.preventDefault()) {
@@ -83,7 +105,7 @@
 
         function addForm(url) {
             $('#modal-form').modal('show');
-            $('#ModalTitleAdd').text('Tambah Member');
+            $('#ModalTitleAdd').text('Tambah Kategori');
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('post');
@@ -92,7 +114,7 @@
 
         function editForm(url) {
             $('#modal-form').modal('show');
-            $('#ModalTitleAdd').text('Edit member');
+            $('#ModalTitleAdd').text('Edit Kategori');
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('put');
@@ -100,7 +122,9 @@
 
             $.get(url)
                 .done((response) => {
-                    $('#modal-form [name=nama_kategori]').val(response.nama_kategori);
+                    $('#modal-form [name=nama]').val(response.nama);
+                    $('#modal-form [name=telepon]').val(response.telepon);
+                    $('#modal-form [name=alamat]').val(response.alamat);
                 })
                 .fail((errors) => {
                     alert('Tidak dapat menampilkan data');
@@ -123,5 +147,16 @@
                     })
             }
         }
+        function cetakMember(url) {
+        if ($('input:checked').length < 1) {
+            alert('Pilih data yang akan dicetak');
+            return;
+        } else {
+            $('.form-member')
+                .attr('target', '_blank')
+                .attr('action', url)
+                .submit();
+        }
+    }
     </script>
 @endpush
