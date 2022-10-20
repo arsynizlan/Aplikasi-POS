@@ -13,9 +13,9 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-6">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">Selamat Datang, John Doe!</h5>
+                                <h5 class="card-title text-primary">Selamat Datang, {{ auth()->user()->name }}!</h5>
                                 <p>
-                                    Selamat Bekerja <span class="fw-bold">John Doe.</span>
+                                    Selamat Bekerja <span class="fw-bold">{{ auth()->user()->name }}.</span>
                                 </p>
                             </div>
                         </div>

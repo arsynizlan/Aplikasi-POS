@@ -29,14 +29,14 @@
             </li>
 
             <li class="menu-item">
-                <a href="{{route('kategori.index')}}" class="menu-link">
+                <a href="{{ route('kategori.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-category-alt'></i>
                     <div data-i18n="Analytics">Kategori</div>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('produk.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-package'></i>
                     <div data-i18n="Analytics">Produk</div>
                 </a>

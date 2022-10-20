@@ -39,8 +39,13 @@
         let table;
         $(function() {
             table = $(".table").DataTable({
+
                 processing: true,
                 autowidth: false,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                 ajax: {
                     url: '{{ route('kategori.data') }}',
                 },
@@ -59,6 +64,7 @@
                     },
                 ]
             });
+
 
             $('#modal-form').validator().on('submit', function(e) {
                 if (!e.preventDefault()) {
