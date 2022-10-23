@@ -14,7 +14,7 @@ class SupplierController extends Controller
 
     public function data()
     {
-        $supplier = supplier::orderBy('id', 'desc')->get();
+        $supplier = supplier::orderBy('id', 'asc')->get();
         return datatables()
             ->of($supplier)
             ->addIndexColumn()
