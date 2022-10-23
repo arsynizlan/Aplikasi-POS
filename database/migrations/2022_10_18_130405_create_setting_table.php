@@ -14,7 +14,7 @@ class CreateSettingTable extends Migration
     public function up()
     {
         Schema::create('setting', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_setting');
             $table->string('nama_perusahaan');
             $table->text('alamat')->nullable();
             $table->string('telepon');

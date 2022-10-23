@@ -14,20 +14,15 @@ class SupplierController extends Controller
 
     public function data()
     {
-        $supplier = supplier::orderBy('id', 'asc')->get();
+        $supplier = supplier::orderBy('id_supplier', 'asc')->get();
         return datatables()
             ->of($supplier)
             ->addIndexColumn()
-            ->addColumn('select_all', function ($produk) {
-                return '<input type="checkbox" name="id[]" value="' . $produk->id . '">
-                ';
-            })
-
             ->addColumn('aksi', function ($supplier) {
                 return '
                 <div class="btn-group">
-                <button type="button" onclick="editForm(`' . route('supplier.update', $supplier->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button type="button" onclick="deleteData(`' . route('supplier.destroy', $supplier->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('supplier.update', $supplier->id_supplier) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('supplier.destroy', $supplier->id_supplier) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })

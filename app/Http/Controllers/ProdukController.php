@@ -16,13 +16,13 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all()->pluck('nama_kategori', 'id');
+        $kategori = Kategori::all()->pluck('nama_kategori', 'id_kategori');
         return view('produk.index', compact('kategori'));
     }
 
     public function data()
     {
-        $produk = Produk::leftJoin('kategori', 'kategori.id', 'produk.id_kategori')
+        $produk = Produk::leftJoin('kategori', 'kategori.id_kategori', 'produk.id_kategori')
             ->select('produk.*', 'nama_kategori')
             ->orderBy('kode_produk', 'asc')
             ->get();
@@ -32,7 +32,7 @@ class ProdukController extends Controller
             ->addIndexColumn()
             ->addColumn('select_all', function ($produk) {
                 return '
-                <input type="checkbox" name="id[]" value="' . $produk->id . '">
+                <input type="checkbox" name="id_produk[]" value="' . $produk->id_produk . '">
                 ';
             })
             ->addColumn('kode_produk', function ($produk) {
@@ -50,8 +50,8 @@ class ProdukController extends Controller
             ->addColumn('aksi', function ($produk) {
                 return '
                 <div class="btn-group">
-                <button type="button" onclick="editForm(`' . route('produk.update', $produk->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button type="button" onclick="deleteData(`' . route('produk.destroy', $produk->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('produk.update', $produk->id_produk) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('produk.destroy', $produk->id_produk) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
@@ -80,7 +80,7 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $produk = Produk::latest()->first() ?? new Produk();
-        $request['kode_produk'] = 'P' . tambah_nol_didepan((int)$produk->id + 1, 6);
+        $request['kode_produk'] = 'P' . tambah_nol_didepan((int)$produk->id_produk + 1, 6);
         $produk = Produk::create($request->all());
 
         return redirect()->back();

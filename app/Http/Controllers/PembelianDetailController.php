@@ -36,9 +36,9 @@ class PembelianDetailController extends Controller
             $row['kode_produk']     = '<span class="badge bg-info">' . $item->produk['kode_produk'] . '</span>';
             $row['nama_produk']     =  $item->produk['nama_produk'];
             $row['harga_beli']      = 'Rp. ' . format_uang($item->harga_beli);
-            $row['jumlah']          = '<input type="number" id="quantity" data-id="' . $item->id . '" class="form-control input-sm quantity" value="' . $item->jumlah . '">';
+            $row['jumlah']          = '<input type="number" id="quantity" data-id="' . $item->id_pembelian_detail . '" class="form-control input-sm quantity" value="' . $item->jumlah . '">';
             $row['subtotal']        = 'Rp. ' . format_uang($item->subtotal);
-            $row['aksi']            = '<div class="btn-group"> <button type="button" onclick="deleteData(`' . route('pembelian_detail.destroy', $item->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button> </div>';
+            $row['aksi']            = '<div class="btn-group"> <button type="button" onclick="deleteData(`' . route('pembelian_detail.destroy', $item->id_pembelian_detail) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button> </div>';
             $data[] = $row;
 
             $total += $item->harga_beli * $item->jumlah;
@@ -63,13 +63,13 @@ class PembelianDetailController extends Controller
 
     public function store(Request $request)
     {
-        $produk = Produk::where('id', $request->id_produk)->first();
+        $produk = Produk::where('id_produk', $request->id_produk)->first();
         if (!$produk) {
             return response()->json('Data gagal disimpan', 400);
         }
         $detail = new PembelianDetail();
         $detail->id_pembelian = $request->id_pembelian;
-        $detail->id_produk = $produk->id;
+        $detail->id_produk = $produk->id_produk;
         $detail->harga_beli = $produk->harga_beli;
         $detail->jumlah = 1;
         $detail->subtotal = $produk->harga_beli;

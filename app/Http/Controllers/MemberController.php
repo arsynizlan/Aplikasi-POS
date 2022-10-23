@@ -27,15 +27,15 @@ class MemberController extends Controller
                 return '<span class="badge bg-label-success me-1">' . $member->kode_member . '</span>';
             })
             ->addColumn('select_all', function ($produk) {
-                return '<input type="checkbox" name="id[]" value="' . $produk->id . '">
+                return '<input type="checkbox" name="id_member[]" value="' . $produk->id_member . '">
                 ';
             })
 
             ->addColumn('aksi', function ($member) {
                 return '
                 <div class="btn-group">
-                <button type="button" onclick="editForm(`' . route('member.update', $member->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button type="button" onclick="deleteData(`' . route('member.destroy', $member->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('member.update', $member->id_member) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('member.destroy', $member->id_member) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
@@ -132,7 +132,7 @@ class MemberController extends Controller
     {
         ini_set('max_execution_time', '0');
         $datamember = collect(array());
-        foreach ($request->id as $id) {
+        foreach ($request->id_member as $id) {
             $member = Member::find($id);
             $datamember[] = $member;
         }

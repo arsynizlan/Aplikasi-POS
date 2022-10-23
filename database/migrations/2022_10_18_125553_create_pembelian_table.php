@@ -14,7 +14,7 @@ class CreatePembelianTable extends Migration
     public function up()
     {
         Schema::create('pembelian', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_pembelian');
             $table->integer('id_supplier');
             $table->integer('total_item');
             $table->integer('total_harga');

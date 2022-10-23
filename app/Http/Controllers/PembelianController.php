@@ -12,7 +12,7 @@ class PembelianController extends Controller
 {
     public function index()
     {
-        $supplier = Supplier::orderBy('id')->get();
+        $supplier = Supplier::orderBy('id_supplier')->get();
 
 
         return view('pembelian.index', compact('supplier'));
@@ -20,7 +20,7 @@ class PembelianController extends Controller
 
     public function data()
     {
-        $pembelian = Pembelian::orderBy('id', 'desc')->get();
+        $pembelian = Pembelian::orderBy('id_pembelian', 'desc')->get();
 
 
         return datatables()
@@ -44,8 +44,8 @@ class PembelianController extends Controller
             ->addColumn('aksi', function ($pembelian) {
                 return '
                 <div class="btn-group">
-                <button onclick="showDetail(`' . route('pembelian.show', $pembelian->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-info-circle"></i></button>
-                <button onclick="deleteData(`' . route('pembelian.destroy', $pembelian->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button onclick="showDetail(`' . route('pembelian.show', $pembelian->id_pembelian) . '`)" class="btn btn-icon btn-info"><i class="bx bx-info-circle"></i></button>
+                <button onclick="deleteData(`' . route('pembelian.destroy', $pembelian->id_pembelian) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
@@ -64,7 +64,7 @@ class PembelianController extends Controller
         $pembelian->bayar = 0;
         $pembelian->save();
 
-        session(['id_pembelian' => $pembelian->id]);
+        session(['id_pembelian' => $pembelian->id_pembelian]);
         session(['id_supplier' => $pembelian->id_supplier]);
 
         return redirect()->route('pembelian_detail.index');
@@ -80,7 +80,7 @@ class PembelianController extends Controller
         $pembelian->bayar = $request->bayar;
         $pembelian->update();
 
-        $detail = PembelianDetail::where('id_pembelian', $pembelian->id)->get();
+        $detail = PembelianDetail::where('id_pembelian', $pembelian->id_pembelian)->get();
 
         foreach ($detail as $item) {
             $produk = Produk::find($item->id_produk);

@@ -14,7 +14,7 @@ class PengeluaranController extends Controller
 
     public function data()
     {
-        $pengeluaran = Pengeluaran::orderBy('id', 'desc')->get();
+        $pengeluaran = Pengeluaran::orderBy('id_pengeluaran', 'desc')->get();
         return datatables()
             ->of($pengeluaran)
             ->addIndexColumn()
@@ -27,8 +27,8 @@ class PengeluaranController extends Controller
             ->addColumn('aksi', function ($pengeluaran) {
                 return '
                 <div class="btn-group">
-                <button type="button" onclick="editForm(`' . route('pengeluaran.update', $pengeluaran->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button type="button" onclick="deleteData(`' . route('pengeluaran.destroy', $pengeluaran->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button type="button" onclick="editForm(`' . route('pengeluaran.update', $pengeluaran->id_pengeluaran) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button type="button" onclick="deleteData(`' . route('pengeluaran.destroy', $pengeluaran->id_pengeluaran) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })

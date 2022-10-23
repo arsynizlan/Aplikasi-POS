@@ -16,7 +16,7 @@ class TambahForeignKeyToProdukTable extends Migration
         Schema::table('produk', function (Blueprint $table) {
             $table->unsignedInteger('id_kategori')->change();
             $table->foreign('id_kategori')
-                ->references('id')
+                ->references('id_kategori')
                 ->on('kategori')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
