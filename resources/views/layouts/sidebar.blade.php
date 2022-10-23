@@ -68,7 +68,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('pembelian.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bxs-down-arrow-square'></i>
                     <div data-i18n="Analytics">Pembelian</div>
                 </a>

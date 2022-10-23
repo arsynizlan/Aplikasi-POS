@@ -14,19 +14,19 @@ function terbilang($angka)
     if ($angka < 12) {
         $terbilang = ' ' . $baca[$angka];
     } elseif ($angka < 20) {
-        $terbilang = terbilang($angka - 10) . 'belas';
+        $terbilang = terbilang($angka - 10) . ' Belas';
     } elseif ($angka < 100) {
-        $terbilang = terbilang($angka / 10) . 'puluh' . terbilang($angka % 10);
+        $terbilang = terbilang($angka / 10) . ' Puluh' . terbilang($angka % 10);
     } elseif ($angka < 200) {
         $terbilang = 'seratus' . terbilang($angka - 100);
     } elseif ($angka < 1000) {
-        $terbilang = terbilang($angka / 100) . 'ratus' . terbilang($angka % 100);
+        $terbilang = terbilang($angka / 100) . ' Ratus' . terbilang($angka % 100);
     } elseif ($angka < 2000) {
         $terbilang = 'seribu' . terbilang($angka / 1000);
     } elseif ($angka < 1000000) {
-        $terbilang = terbilang($angka / 1000) . 'ratus' . terbilang($angka % 1000);
+        $terbilang = terbilang($angka / 1000) . ' Ribu' . terbilang($angka % 1000);
     } elseif ($angka < 1000000000) {
-        $terbilang = terbilang($angka / 1000000) . 'juta' . terbilang($angka % 1000000);
+        $terbilang = terbilang($angka / 1000000) . ' Juta' . terbilang($angka % 1000000);
     }
     return $terbilang;
 }
