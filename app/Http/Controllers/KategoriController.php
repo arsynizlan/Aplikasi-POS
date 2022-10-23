@@ -20,15 +20,15 @@ class KategoriController extends Controller
 
     public function data()
     {
-        $kategori = Kategori::orderBy('id', 'desc')->get();
+        $kategori = Kategori::orderBy('id_kategori', 'desc')->get();
         return datatables()
             ->of($kategori)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kategori) {
                 return '
                 <div class="btn-group">
-                <button onclick="editForm(`' . route('kategori.update', $kategori->id) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
-                <button onclick="deleteData(`' . route('kategori.destroy', $kategori->id) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
+                <button onclick="editForm(`' . route('kategori.update', $kategori->id_kategori) . '`)" class="btn btn-icon btn-info"><i class="bx bx-edit-alt"></i></button>
+                <button onclick="deleteData(`' . route('kategori.destroy', $kategori->id_kategori) . '`)" class="btn btn-icon btn-danger"><i class="bx bx-trash"></i></button>
             </div>
                 ';
             })
