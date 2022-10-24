@@ -13,8 +13,6 @@ class PembelianController extends Controller
     public function index()
     {
         $supplier = Supplier::orderBy('id_supplier')->get();
-
-
         return view('pembelian.index', compact('supplier'));
     }
 

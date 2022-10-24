@@ -97,7 +97,7 @@
                                         <div class="col-lg-8">
                                             <div class="input-group input-group-merge">
                                                 <input type="number" name="diskon" id="diskon" class="form-control"
-                                                    value="{{$diskon}}">
+                                                    value="{{ $diskon }}">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                     })
                     .done(response => {
                         $(this).on('mouseout', function() {
-                            table.ajax.reload();
+                            table.ajax.reload(() => loadForm($('#diskon').val()));
                         });
                     })
                     .fail(errors => {
@@ -244,7 +244,7 @@
             $.post('{{ route('pembelian_detail.store') }}', $('.form-produk').serialize())
                 .done(response => {
                     $('#kode_produk').focus();
-                    table.ajax.reload();
+                    table.ajax.reload(() => loadForm($('#diskon').val()));
                 })
                 .fail(errors => {
                     alert('Tidak dapat menyimpan data');
@@ -259,7 +259,7 @@
                         '_method': 'delete'
                     })
                     .done((response) => {
-                        table.ajax.reload();
+                        table.ajax.reload(() => loadForm($('#diskon').val()));
                     })
                     .fail((errors) => {
                         alert('Tidak dapat menghapus data');

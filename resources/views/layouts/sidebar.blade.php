@@ -75,21 +75,21 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('penjualan.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bxs-up-arrow-square'></i>
                     <div data-i18n="Analytics">Penjualan</div>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="{{route('transaksi.index')}}" class="menu-link">
+                <a href="{{ route('transaksi.index') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-transfer-alt'></i>
-                    <div data-i18n="Analytics">Transaksi Lama</div>
+                    <div data-i18n="Analytics">Transaksi Aktif</div>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="{{route('transaksi.baru')}}" class="menu-link">
+                <a href="{{ route('transaksi.baru') }}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-transfer-alt'></i>
                     <div data-i18n="Analytics">Transaksi Baru</div>
                 </a>

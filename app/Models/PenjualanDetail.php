@@ -9,7 +9,7 @@ class PenjualanDetail extends Model
 {
     use HasFactory;
     protected $table = 'penjualan_detail';
-    protected $primaryKey ='id_penjualan_detail';
+    protected $primaryKey = 'id_penjualan_detail';
     protected $guarded = [];
 
 
@@ -17,8 +17,6 @@ class PenjualanDetail extends Model
     {
         return $this->hasOne(Produk::class, 'id_produk', 'id_produk');
     }
-    // public function member()
-    // {
-    //     return $this->hasOne(Produk::class, 'id_member', 'id_member');
-    // }
+
+    
 }

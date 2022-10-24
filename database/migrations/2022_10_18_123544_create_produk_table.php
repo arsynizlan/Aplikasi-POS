@@ -22,7 +22,7 @@ class CreateProdukTable extends Migration
             $table->integer('harga_beli');
             $table->tinyInteger('diskon')->default(0);
             $table->integer('harga_jual');
-            $table->integer('stok');
+            $table->unsignedBigInteger('stok');
             $table->timestamps();
         });
     }

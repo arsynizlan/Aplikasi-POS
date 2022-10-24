@@ -6,7 +6,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalTitleAdd"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <h4 class="modal-title">Pilih Member</h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
                 <table class="table table-striped table-member">
@@ -25,8 +25,8 @@
                                 <td>{{ $item->telepon }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>
-                                    <a href="{{ route('pembelian.create', $item->id_member) }}"
-                                        class="btn btn-primary btn-xs btn-flat">
+                                    <a href="#" class="btn btn-primary btn-xs btn-flat"
+                                        onclick="pilihMember('{{ $item->id_member }}','{{ $item->kode_member }}')">
                                         <i class="fa fa-check-circle">Pilih</i>
                                     </a>
                                 </td>
