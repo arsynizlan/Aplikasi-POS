@@ -141,7 +141,7 @@ class ProdukController extends Controller
 
     public function deleteSelected(Request $request)
     {
-        foreach ($request->id as $id) {
+        foreach ($request->id_produk as $id) {
             $produk = Produk::find($id);
             $produk->delete();
         }
@@ -151,7 +151,7 @@ class ProdukController extends Controller
     public function cetakBarcode(Request $request)
     {
         $dataProduk = array();
-        foreach ($request->id as $id) {
+        foreach ($request->id_produk as $id) {
             $produk = Produk::find($id);
             $dataProduk[] = $produk;
         }

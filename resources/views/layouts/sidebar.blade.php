@@ -82,14 +82,14 @@
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{route('transaksi.index')}}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-transfer-alt'></i>
                     <div data-i18n="Analytics">Transaksi Lama</div>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{route('transaksi.baru')}}" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-transfer-alt'></i>
                     <div data-i18n="Analytics">Transaksi Baru</div>
                 </a>

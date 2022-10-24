@@ -8,6 +8,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PembelianDetailController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PenjualanDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +61,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/pembelian_detail/loadform/{diskon}/{total}', [PembelianDetailController::class, 'loadForm'])->name('pembelian_detail.load_form');
     Route::resource('/pembelian_detail', PembelianDetailController::class)
         ->except('create', 'show', 'edit');
+
+
+    Route::get('/transaksi/baru',[PenjualanController::class,'create'])->name('transaksi.baru');
+    Route::get('/transaksi/{id}/data',[PenjualanDetailController::class,'data'])->name('transaksi.data');
+    Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}',[PenjualanDetailController::class,'loadForm'])->name('transaksi.load_form');
+    Route::resource('/transaksi', PenjualanDetailController::class)
+        ->except('show');
+
+
+
 });
