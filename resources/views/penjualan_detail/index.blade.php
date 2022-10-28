@@ -152,10 +152,6 @@
                     autowidth: false,
                     Bsort: false,
                     "bLengthChange": false,
-                    // dom: 'Brt',
-                    // buttons: [
-                    //     'copy', 'csv', 'excel', 'pdf', 'print'
-                    // ],
                     ajax: {
                         url: '{{ route('transaksi.data', $id_penjualan) }}',
                     },
