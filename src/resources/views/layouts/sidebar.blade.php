@@ -95,7 +95,7 @@
                 </a>
             </li>
 
-            <li class="menu-header small text-uppercase">
+            {{-- <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">REPORT</span>
             </li>
 
@@ -104,7 +104,7 @@
                     <i class='menu-icon tf-icons bx bxs-file'></i>
                     <div data-i18n="Analytics">Laporan</div>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">SYSTEM</span>
